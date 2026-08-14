@@ -1,6 +1,6 @@
 /* ============ FRÉQUENCE ZÉRO — moteur multi-nuits ============ */
 const $ = (sel) => document.querySelector(sel);
-const NUITS = [NUIT1, NUIT2, NUIT3];
+const NUITS = [NUIT1, NUIT2, NUIT3, NUIT4];
 let nuit = NUITS[0];
 let indexNuit = 0;
 const resolu = {};
@@ -88,6 +88,7 @@ function demarrerNuit(i) {
   $("#intro-texte").innerHTML = nuit.intro.texte.replace(/\n/g, "<br>");
   $("#nom-auditeur").textContent = nuit.auditeur;
   $("#portrait").src = nuit.portrait;
+  $("#portrait").style.filter = nuit.portraitStyle || "";
   montrer("#ecran-intro");
 }
 
