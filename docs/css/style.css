@@ -135,3 +135,47 @@ input[type="text"] {
   92% { opacity: .55; }
   95% { opacity: .9; }
 }
+/* ============ FIORITURES & CADRES DÉCORATIFS ============ */
+
+/* 1) Cadre fixe autour de la fenêtre, façon bezel de poste vintage */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 10px;
+  z-index: 8;
+  pointer-events: none;
+  opacity: .5;
+  background:
+    linear-gradient(var(--ambre), var(--ambre)) top left     / 26px 2px,
+    linear-gradient(var(--ambre), var(--ambre)) top left     / 2px 26px,
+    linear-gradient(var(--ambre), var(--ambre)) top right    / 26px 2px,
+    linear-gradient(var(--ambre), var(--ambre)) top right    / 2px 26px,
+    linear-gradient(var(--ambre), var(--ambre)) bottom left  / 26px 2px,
+    linear-gradient(var(--ambre), var(--ambre)) bottom left  / 2px 26px,
+    linear-gradient(var(--ambre), var(--ambre)) bottom right / 26px 2px,
+    linear-gradient(var(--ambre), var(--ambre)) bottom right / 2px 26px;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 0 6px rgba(255, 179, 64, .35));
+}
+
+/* 2) Cartes : double liseré extérieur + vis d'angle métalliques */
+.carte {
+  outline: 1px solid rgba(255, 179, 64, .16);
+  outline-offset: 5px;
+  background-image:
+    radial-gradient(circle at 12px 12px, #97a2b1 0 2px, rgba(0,0,0,.6) 2.5px, transparent 4px),
+    radial-gradient(circle at calc(100% - 12px) 12px, #97a2b1 0 2px, rgba(0,0,0,.6) 2.5px, transparent 4px),
+    radial-gradient(circle at 12px calc(100% - 12px), #97a2b1 0 2px, rgba(0,0,0,.6) 2.5px, transparent 4px),
+    radial-gradient(circle at calc(100% - 12px) calc(100% - 12px), #97a2b1 0 2px, rgba(0,0,0,.6) 2.5px, transparent 4px);
+}
+
+/* 3) Filet lumineux décoratif sous les titres des cartes */
+.carte h2::after {
+  content: "";
+  display: block;
+  width: min(240px, 60%);
+  height: 1px;
+  margin-top: 10px;
+  background: linear-gradient(90deg, transparent, var(--rouge), transparent);
+  box-shadow: 0 0 8px rgba(255, 59, 48, .6);
+}
