@@ -174,6 +174,13 @@ function rendreCarnet() {
       const n = document.createElement("p");
       n.className = "note"; n.textContent = "📌 " + en.note;
       bloc.appendChild(n);
+      if (en.oeufMorse) {
+        const o = document.createElement("button");
+        o.className = "lien"; o.textContent = en.oeufMorse.texte;
+        o.onclick = () => { gresillement(2, 0.03); jouerMorse(en.oeufMorse.mot); afficherMorse(bloc, en.oeufMorse.mot); try { localStorage.setItem("fz-oeuf", en.oeufMorse.mot.toLowerCase()); } catch (e) {} };
+        bloc.appendChild(o);
+      }
+
     } else {
       if (en.boutonMorse) {
         const m = document.createElement("button");

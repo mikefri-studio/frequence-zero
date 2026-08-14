@@ -39,6 +39,8 @@ const NUIT1 = {
       question: "En isolant l'ambiance, on entend un tapotement faible. Écoute-le et décode le mot.",
       type: "saisie",
       boutonMorse: true,
+      oeufMorse: { texte: "🌀 Isoler la fréquence résiduelle", mot: "CABINE" },
+
       reponse: ["ici"],
       indice: "·· puis −·−· puis ··  →  I = ·· , C = −·−·",
       note: "Le morse disait « ICI ». L'auditeur « lointain » émet depuis ici."

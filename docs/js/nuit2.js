@@ -75,3 +75,18 @@ const NUIT2 = {
     texte: "Deux nuits. Deux voix. Une seule origine.\nLe poste intérieur du sous-sol. Celui de la cabine qui a brûlé il y a vingt ans."
   }
 };
+/* ---------- ŒUF DE PÂQUES : fréquence résiduelle ---------- */
+try {
+  if ((localStorage.getItem("fz-oeuf") || "") === "cabine") {
+    NUIT2.enigmes.push({
+      id: "oeuf",
+      titre: "4. La fréquence résiduelle",
+      question: "Sous le témoignage de Sonia, la même fréquence résiduelle émet encore. Le mot décodé l'autre nuit n'était pas pour toi. Retape-le.",
+      type: "saisie",
+      boutonAudio: { texte: "🎧 Réécouter la fréquence résiduelle", mot: "CABINE" },
+      reponse: ["cabine"],
+      indice: "Six lettres. L'endroit où quelqu'un a brûlé, il y a vingt ans.",
+      note: "CABINE. Le mot circulait déjà sur la ligne 0 avant l'incendie. Quelqu'un émet depuis la cabine. Toujours."
+    });
+  }
+} catch (e) {}
