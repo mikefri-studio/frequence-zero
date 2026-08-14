@@ -89,6 +89,7 @@ function demarrerNuit(i) {
   $("#nom-auditeur").textContent = nuit.auditeur;
   $("#portrait").src = nuit.portrait;
   $("#portrait").style.filter = nuit.portraitStyle || "";
+  reglerAmbiance(i + 1);
   montrer("#ecran-intro");
 }
 
@@ -291,3 +292,63 @@ const btnFermerArticle = $("#btn-fermer-article");
 if (btnFermerArticle) btnFermerArticle.onclick = fermerArticle;
 const modaleArticle = $("#modale-article");
 if (modaleArticle) modaleArticle.addEventListener("click", (e) => { if (e.target === modaleArticle) fermerArticle(); });
+
+/* ---------- AMBIANCE SONORE DE FOND ---------- */
+let ambianceOn = true;
+let ambianceNodes = null;
+function ambiance() {
+  if (ambianceNodes) return ambianceNodes;
+  const ctx = audio();
+  const buf = ctx.createBuffer(1, ctx.sampleRate * 2, ctx.sampleRate);
+  const d = buf.getChannelData(0);
+  for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+  const pluie = ctx.createBufferSource(); pluie.buffer = buf; pluie.loop = true;
+  const lp = ctx.createBiquadFilter(); lp.type = "lowpass"; lp.frequency.value = 900;
+  const gPluie = ctx.createGain(); gPluie.gain.value = 0;
+  pluie.connect(lp); lp.connect(gPluie); gPluie.connect(ctx.destination);
+  const vent = ctx.createBufferSource(); vent.buffer = buf; vent.loop = true; vent.playbackRate.value = .7;
+  const bp = ctx.createBiquadFilter(); bp.type = "bandpass"; bp.frequency.value = 300; bp.Q.value = .8;
+  const gVent = ctx.createGain(); gVent.gain.value = 0;
+  const lfo = ctx.createOscillator(); lfo.frequency.value = .07;
+  const lfoGain = ctx.createGain(); lfoGain.gain.value = 140;
+  lfo.connect(lfoGain); lfoGain.connect(bp.frequency);
+  vent.connect(bp); bp.connect(gVent); gVent.connect(ctx.destination);
+  pluie.start(); vent.start(); lfo.start();
+  ambianceNodes = { gPluie, gVent };
+  return ambianceNodes;
+}
+function reglerAmbiance(num) {
+  if (!ambianceOn) return;
+  const a = ambiance();
+  const ctx = audio(); const t = ctx.currentTime;
+  const niveaux = { 0: [.025, .014], 1: [.03, .018], 2: [.022, .026], 3: [.012, .03], 4: [.007, .016] };
+  const nv = niveaux[num] || [.03, .018];
+  a.gPluie.gain.cancelScheduledValues(t); a.gVent.gain.cancelScheduledValues(t);
+  a.gPluie.gain.setValueAtTime(a.gPluie.gain.value, t);
+  a.gVent.gain.setValueAtTime(a.gVent.gain.value, t);
+  a.gPluie.gain.linearRampToValueAtTime(nv[0], t + 2);
+  a.gVent.gain.linearRampToValueAtTime(nv[1], t + 2);
+}
+const btnAmbiance = $("#btn-ambiance");
+if (btnAmbiance) btnAmbiance.onclick = () => {
+  ambianceOn = !ambianceOn;
+  btnAmbiance.textContent = ambianceOn ? "🔊" : "🔇";
+  if (ambianceOn) { reglerAmbiance(indexNuit + 1); }
+  else {
+    const a = ambianceNodes;
+    if (a) { const ctx = audio(); const t = ctx.currentTime;
+      a.gPluie.gain.linearRampToValueAtTime(0, t + .5);
+      a.gVent.gain.linearRampToValueAtTime(0, t + .5); }
+  }
+};
+
+/* ---------- SON DÈS L'ÉCRAN TITRE ---------- */
+const btnCasque = $("#btn-casque");
+if (btnCasque) btnCasque.onclick = () => {
+  ambianceOn = true;
+  const bAmb = $("#btn-ambiance"); if (bAmb) bAmb.textContent = "🔊";
+  gresillement(1.4, 0.04); bip(640, .2, .08); bip(880, .45, .1);
+  reglerAmbiance(0);
+  btnCasque.textContent = "🎧 Son activé — bonne écoute";
+  btnCasque.disabled = true;
+};

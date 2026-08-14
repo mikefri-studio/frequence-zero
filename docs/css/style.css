@@ -223,3 +223,16 @@ body::before {
 .j-corps p { margin: 0 0 10px; line-height: 1.65; text-align: justify; }
 .j-corps p:first-child::first-letter { font-size: 2.6em; float: left; line-height: .9; padding-right: 6px; font-weight: bold; }
 .j-sign { text-align: right; font-style: italic; }
+
+/* ----- bouton ambiance ----- */
+.btn-ambiance {
+  position: fixed; right: 14px; bottom: 14px; z-index: 9;
+  background: rgba(8,12,16,.7); border: 1px solid #2a3440; color: var(--gris-texte);
+  border-radius: 20px; padding: 6px 12px; font-family: inherit; font-size: .85rem;
+  cursor: pointer; transition: .2s;
+}
+.btn-ambiance:hover { border-color: var(--ambre); color: var(--ambre); }
+
+/* ----- bouton casque sur le titre ----- */
+#btn-casque { border-color: var(--ambre); color: var(--ambre); animation: souffle 2.5s infinite; }
+@keyframes souffle { 50% { box-shadow: 0 0 14px rgba(255,179,64,.35); } }
