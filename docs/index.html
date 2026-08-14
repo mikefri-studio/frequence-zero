@@ -79,6 +79,7 @@
       <h2 class="fin-nuit" id="fin-nuit-titre"></h2>
       <div>
         <button class="btn" id="btn-suite" style="display:none"></button>
+        <button class="btn btn-article" id="btn-article-fin" style="display:none">📰 Lire l'article du lendemain</button>
         <button class="btn petit" id="btn-rejouer">↺ Rejouer</button>
         <button class="btn petit" id="btn-titre">🏠 Titre</button>
       </div>
@@ -87,6 +88,24 @@
   </section>
 
 </main>
+  <!-- ÉPILOGUE : ARTICLE DU LENDEMAIN -->
+  <div class="modale" id="modale-article" hidden>
+    <div class="journal">
+      <button class="btn petit fermer" id="btn-fermer-article">✖ Fermer</button>
+      <p class="j-nom">LE COURRIER DE MIRABEAU</p>
+      <p class="j-date">Édition locale — samedi 16 août 2026 — 6 h 12</p>
+      <h2 class="j-titre">Confession à 3 h 33 sur Fréquence Zéro</h2>
+      <div class="j-corps">
+        <p>Après vingt ans de silence, l'incendie de la cabine radio de 2006 a enfin une voix. Dans la nuit de vendredi à samedi, l'animateur de l'émission nocturne <i>Fréquence Zéro</i> a diffusé en direct la confession de M. D., ancien technicien de la station.</p>
+        <p>L'homme a reconnu avoir fermé la porte de la cabine de diffusion lors de l'incendie du 15 août 2006, sans savoir qu'un technicien de nuit, R. Callot, s'y trouvait encore. Le rapport de l'époque concluait à un accident et à des locaux vides.</p>
+        <p>« La bande tourne encore », nous a confié l'animateur, joint par téléphone. La police a confirmé la saisie d'un enregistrement « d'intérêt majeur ».</p>
+        <p>M. D. s'est constitué prisonnier à l'aube. Il a demandé à être jugé « en direct, si c'est possible ».</p>
+        <p>La ligne téléphonique intérieure dite « ligne 0 », installée au sous-sol avant l'incendie, a été débranchée hier matin. Selon la station, « plus aucun appel n'est attendu ».</p>
+      </div>
+      <p class="j-sign">— La rédaction locale</p>
+    </div>
+  </div>
+
 
 <script src="js/nuit1.js"></script>
 <script src="js/nuit2.js"></script>

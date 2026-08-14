@@ -258,7 +258,9 @@ function allerFin() {
     suite.style.display = "inline-block";
     suite.textContent = "🌙 " + NUITS[indexNuit + 1].titreNuit;
   } else { suite.style.display = "none"; }
-  montrer("#ecran-fin");
+    const artBtn = $("#btn-article-fin");
+  if (artBtn) artBtn.style.display = (indexNuit + 1 === NUITS.length) ? "inline-block" : "none";
+montrer("#ecran-fin");
   gresillement(3, 0.05);
   bip(120, 0.5, 0.6, 0.15);
 }
@@ -274,3 +276,11 @@ $("#btn-rejouer").onclick = () => demarrerNuit(indexNuit);
 $("#btn-titre").onclick = () => { rendreTitre(); montrer("#ecran-titre"); };
 
 rendreTitre();
+/* ---------- ÉPILOGUE : ARTICLE ---------- */
+function ouvrirArticle() { const m = $("#modale-article"); if (m) { m.hidden = false; gresillement(1.2, 0.03); } }
+function fermerArticle() { const m = $("#modale-article"); if (m) m.hidden = true; }
+document.querySelectorAll(".btn-article, #btn-article-fin").forEach((b) => b.onclick = ouvrirArticle);
+const btnFermerArticle = $("#btn-fermer-article");
+if (btnFermerArticle) btnFermerArticle.onclick = fermerArticle;
+const modaleArticle = $("#modale-article");
+if (modaleArticle) modaleArticle.addEventListener("click", (e) => { if (e.target === modaleArticle) fermerArticle(); });
