@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fréquence Zéro</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="pluie"></div>
+
+<main id="app">
+
+  <!-- TITRE -->
+  <section class="ecran actif" id="ecran-titre">
+    <img class="fond" src="assets/images/studio.jpg" alt="">
+    <div class="voile"></div>
+    <div class="contenu">
+      <h1 class="titre-neon">FRÉQUENCE <span>ZÉRO</span></h1>
+      <p class="sous-titre">Émission de nuit — standard ouvert. Certaines histoires ne collent pas.</p>
+      <div id="liste-nuits"></div>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="ecran" id="ecran-intro">
+    <div class="contenu carte">
+      <h2 id="intro-titre"></h2>
+      <p id="intro-texte"></p>
+      <button class="btn" id="btn-appel">📞 Décrocher</button>
+    </div>
+  </section>
+
+  <!-- APPEL -->
+  <section class="ecran" id="ecran-appel">
+    <div class="contenu carte">
+      <div class="entete-appel">
+        <span class="pastille"></span> APPEL ENTRANT — « <span id="nom-auditeur"></span> »
+        <span class="minuteur" id="minuteur">00:00</span>
+      </div>
+      <div class="transcript" id="transcript"></div>
+      <div class="rangée">
+        <button class="btn petit" id="btn-reecouter">↺ Réécouter</button>
+        <button class="btn" id="btn-carnet">📒 Ouvrir le carnet</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARNET -->
+  <section class="ecran" id="ecran-carnet">
+    <div class="contenu carte">
+      <h2>📒 Carnet d'enquête</h2>
+      <div id="enigmes"></div>
+      <div class="rangée">
+        <button class="btn petit" id="btn-retour-appel">📞 Réécouter l'appel</button>
+        <button class="btn" id="btn-rappeler" disabled>☎️ Rappeler</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- RAPPEL -->
+  <section class="ecran" id="ecran-rappel">
+    <div class="contenu carte">
+      <h2>☎️ Rappel — auditeur en ligne</h2>
+      <div id="choix-rappel"></div>
+    </div>
+  </section>
+
+  <!-- FIN -->
+  <section class="ecran" id="ecran-fin">
+    <img class="fond" src="assets/images/standard.jpg" alt="">
+    <div class="voile"></div>
+    <div class="contenu">
+      <div class="crt" id="crt-fin"></div>
+      <p class="fin-texte" id="fin-texte"></p>
+      <h2 class="fin-nuit" id="fin-nuit-titre"></h2>
+      <div>
+        <button class="btn" id="btn-suite" style="display:none"></button>
+        <button class="btn petit" id="btn-rejouer">↺ Rejouer</button>
+        <button class="btn petit" id="btn-titre">🏠 Titre</button>
+      </div>
+      <p class="a-suivre">Le standard grésille… quelqu'un attend en bas.</p>
+    </div>
+  </section>
+
+</main>
+
+<script src="js/nuit1.js"></script>
+<script src="js/nuit2.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>
