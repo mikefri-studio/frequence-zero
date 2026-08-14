@@ -1,6 +1,6 @@
 /* ============ FRÉQUENCE ZÉRO — moteur multi-nuits ============ */
 const $ = (sel) => document.querySelector(sel);
-const NUITS = [NUIT1, NUIT2];
+const NUITS = [NUIT1, NUIT2, NUIT3];
 let nuit = NUITS[0];
 let indexNuit = 0;
 const resolu = {};
@@ -13,6 +13,12 @@ function montrer(id) {
 }
 
 function progresse() { return parseInt(localStorage.getItem("fz-prog") || "0", 10); }
+
+function normaliser(s) {
+  return s.toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]/g, "");
+}
 
 /* ---------- AUDIO ---------- */
 let ctxAudio = null;
@@ -52,6 +58,9 @@ function jouerMorse(mot) {
     for (const s of code) { const d = (s === ".") ? U : U * 3; bip(640, t, d); t += d + U; }
     t += U * 2;
   }
+}
+function codeMorse(mot) {
+  return mot.toUpperCase().split("").map((l) => MORSE[l] || "").join("   ");
 }
 function sonnerie() { bip(480, 0, .15); bip(480, .3, .15); bip(480, .6, .15); }
 function succes()   { bip(660, 0, .12); bip(880, .15, .2); }
@@ -123,6 +132,29 @@ function ecrireLigne(ligne) {
 }
 
 /* ---------- CARNET ---------- */
+function afficherMorse(bloc, mot) {
+  let p = bloc.querySelector(".morse-visuel");
+  if (!p) {
+    p = document.createElement("p");
+    p.className = "indice morse-visuel";
+    bloc.appendChild(p);
+  }
+  p.textContent = "🔊 " + codeMorse(mot);
+}
+
+function afficherIndice(bloc, en) {
+  if (bloc.querySelector(".indice:not(.morse-visuel)")) return;
+  const p = document.createElement("p");
+  p.className = "indice"; p.textContent = "💡 " + en.indice;
+  bloc.appendChild(p);
+}
+
+function secouer(el) {
+  el.classList.remove("secousse");
+  void el.offsetWidth;
+  el.classList.add("secousse");
+}
+
 function rendreCarnet() {
   const zone = $("#enigmes");
   zone.innerHTML = "";
@@ -141,6 +173,18 @@ function rendreCarnet() {
       n.className = "note"; n.textContent = "📌 " + en.note;
       bloc.appendChild(n);
     } else {
+      if (en.boutonMorse) {
+        const m = document.createElement("button");
+        m.className = "btn petit"; m.textContent = "🎧 Écouter le fond sonore";
+        m.onclick = () => { gresillement(1.4, 0.03); jouerMorse("ICI"); afficherMorse(bloc, "ICI"); };
+        bloc.appendChild(m);
+      }
+      if (en.boutonAudio) {
+        const m = document.createElement("button");
+        m.className = "btn petit"; m.textContent = en.boutonAudio.texte;
+        m.onclick = () => { gresillement(1.8, 0.04); jouerMorse(en.boutonAudio.mot); afficherMorse(bloc, en.boutonAudio.mot); };
+        bloc.appendChild(m);
+      }
       if (en.type === "choix") {
         en.choix.forEach((c, i) => {
           const b = document.createElement("button");
@@ -152,19 +196,13 @@ function rendreCarnet() {
           bloc.appendChild(b);
         });
       } else {
-        if (en.boutonMorse) {
-          const m = document.createElement("button");
-          m.className = "btn petit"; m.textContent = "🎧 Écouter le fond sonore";
-          m.onclick = () => { gresillement(1.4, 0.03); jouerMorse("ICI"); };
-          bloc.appendChild(m);
-        }
         const champ = document.createElement("input");
         champ.type = "text"; champ.placeholder = "Ta réponse…";
         const ok = document.createElement("button");
         ok.className = "btn petit"; ok.textContent = "Valider";
         ok.onclick = () => {
-          const val = champ.value.trim().toLowerCase();
-          if (en.reponse.includes(val)) { resolu[en.id] = true; succes(); rendreCarnet(); }
+          const val = normaliser(champ.value);
+          if (en.reponse.map(normaliser).includes(val)) { resolu[en.id] = true; succes(); rendreCarnet(); }
           else { erreur(); secouer(champ); afficherIndice(bloc, en); }
         };
         champ.addEventListener("keydown", (e) => { if (e.key === "Enter") ok.click(); });
@@ -178,18 +216,6 @@ function rendreCarnet() {
     zone.appendChild(bloc);
   });
   $("#btn-rappeler").disabled = !nuit.enigmes.every((e) => resolu[e.id]);
-}
-
-function afficherIndice(bloc, en) {
-  if (bloc.querySelector(".indice")) return;
-  const p = document.createElement("p");
-  p.className = "indice"; p.textContent = "💡 " + en.indice;
-  bloc.appendChild(p);
-}
-function secouer(el) {
-  el.classList.remove("secousse");
-  void el.offsetWidth;
-  el.classList.add("secousse");
 }
 
 /* ---------- RAPPEL ---------- */
