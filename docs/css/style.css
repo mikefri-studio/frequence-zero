@@ -179,3 +179,27 @@ body::after {
   background: linear-gradient(90deg, transparent, var(--rouge), transparent);
   box-shadow: 0 0 8px rgba(255, 59, 48, .6);
 }
+/* ============ DESSINS D'AMBIANCE (SVG intégrés) ============ */
+
+/* Lune + étoiles (haut droite) et antenne radio (bas gauche), façon reflets sur la vitre */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+  opacity: .55;
+  background:
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><mask id='m'><rect width='200' height='200' fill='white'/><circle cx='128' cy='78' r='40' fill='black'/></mask></defs><circle cx='105' cy='95' r='44' fill='%23ffb340' opacity='.75' mask='url(%23m)'/><g stroke='%23dfe7ee' stroke-width='2' opacity='.7' stroke-linecap='round'><path d='M38 52 v12 M32 58 h12'/><path d='M60 142 v9 M55.5 146.5 h9'/><path d='M24 104 v7 M20.5 107.5 h7'/></g></svg>") top right / 170px 170px no-repeat,
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><g stroke='%23ff3b30' fill='none' stroke-width='2.5' opacity='.6' stroke-linecap='round'><path d='M100 192 V92'/><path d='M84 192 L100 148 L116 192'/><path d='M100 122 L88 152 M100 122 L112 152'/><circle cx='100' cy='86' r='4' fill='%23ff3b30'/><path d='M78 64 a31 31 0 0 1 44 0'/><path d='M66 52 a48 48 0 0 1 68 0'/><path d='M54 40 a65 65 0 0 1 92 0'/></g></svg>") bottom left / 180px 180px no-repeat;
+}
+
+/* Tache de café sur le carnet d'enquête (+ on garde les vis d'angle) */
+#ecran-carnet .carte {
+  background-image:
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><g fill='none' stroke='%23b98a4a' stroke-linecap='round'><circle cx='60' cy='60' r='38' stroke-width='7' opacity='.28'/><circle cx='60' cy='60' r='31' stroke-width='2' opacity='.22'/><path d='M25 78 q-8 10 -3 18' stroke-width='4' opacity='.25'/></g></svg>") bottom 18px right 22px / 110px 110px no-repeat,
+    radial-gradient(circle at 12px 12px, #97a2b1 0 2px, rgba(0,0,0,.6) 2.5px, transparent 4px),
+    radial-gradient(circle at calc(100% - 12px) 12px, #97a2b1 0 2px, rgba(0,0,0,.6) 2.5px, transparent 4px),
+    radial-gradient(circle at 12px calc(100% - 12px), #97a2b1 0 2px, rgba(0,0,0,.6) 2.5px, transparent 4px),
+    radial-gradient(circle at calc(100% - 12px) calc(100% - 12px), #97a2b1 0 2px, rgba(0,0,0,.6) 2.5px, transparent 4px);
+}
