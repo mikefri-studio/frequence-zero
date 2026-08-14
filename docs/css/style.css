@@ -119,3 +119,19 @@ input[type="text"] {
 /* liste des nuits sur l'écran titre */
 #liste-nuits { display: flex; flex-direction: column; gap: 10px; align-items: center; margin-top: 8px; }
 #liste-nuits .btn { min-width: 260px; }
+/* ----- portrait de l'auditeur ----- */
+.appel-haut { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+.appel-haut .entete-appel { margin-bottom: 0; flex: 1; }
+.portrait {
+  width: 86px; height: 86px; border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--rouge);
+  box-shadow: 0 0 18px rgba(255,59,48,.45);
+  filter: saturate(.9) contrast(1.1);
+  animation: cligner-portrait 4s infinite;
+}
+@keyframes cligner-portrait {
+  0%, 90%, 100% { opacity: 1; }
+  92% { opacity: .55; }
+  95% { opacity: .9; }
+}

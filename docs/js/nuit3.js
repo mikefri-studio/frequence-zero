@@ -6,6 +6,7 @@ const NUIT3 = {
     texte: "Troisième nuit. Tu n'as pas dormi. Le rapport du standard est ouvert sur ton bureau : LIGNE 0, POSTE INTÉRIEUR, SOUS-SOL.\nLe voyant s'allume. Une voix que tu n'as jamais entendue."
   },
   auditeur: "L'Ancien",
+  portrait: "assets/images/ancien.jpg",
 
   transcript: [
     { t: "00:02", qui: "???", texte: "Bonsoir. Vous ne me connaissez pas. Mais moi, je vous connais." },

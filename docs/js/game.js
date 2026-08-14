@@ -87,6 +87,7 @@ function demarrerNuit(i) {
   $("#intro-titre").textContent = nuit.intro.titre;
   $("#intro-texte").innerHTML = nuit.intro.texte.replace(/\n/g, "<br>");
   $("#nom-auditeur").textContent = nuit.auditeur;
+  $("#portrait").src = nuit.portrait;
   montrer("#ecran-intro");
 }
 

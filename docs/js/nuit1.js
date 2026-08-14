@@ -6,6 +6,7 @@ const NUIT1 = {
     texte: "La pluie frappe la vitre. Le néon « ON AIR » grésille au-dessus de la console.\nTu poses ton casque. Le standard affiche déjà un appel entrant."
   },
   auditeur: "Marco",
+  portrait: "assets/images/marco.jpg",
 
   transcript: [
     { t: "00:03", qui: "Marco", texte: "Bonsoir… c'est Marco. Je suis sur la route." },

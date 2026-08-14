@@ -6,6 +6,7 @@ const NUIT2 = {
     texte: "Deuxième nuit d'antenne. Le rapport du standard n'a pas bougé de ton bureau : LIGNE 0.\nCe soir, le voyant s'allume avant même la première chanson."
   },
   auditeur: "Sonia",
+  portrait: "assets/images/sonia.jpg",
 
   transcript: [
     { t: "00:02", qui: "Sonia", texte: "Bonsoir. Sonia. Je suis veilleuse de nuit à l'entrepôt Mirabeau, en face de votre station." },
