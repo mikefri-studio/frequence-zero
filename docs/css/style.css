@@ -236,3 +236,67 @@ body::before {
 /* ----- bouton casque sur le titre ----- */
 #btn-casque { border-color: var(--ambre); color: var(--ambre); animation: souffle 2.5s infinite; }
 @keyframes souffle { 50% { box-shadow: 0 0 14px rgba(255,179,64,.35); } }
+
+
+/* ----- MODE RÉSONANCE ----- */
+#ecran-resonance {
+  display: none; flex-direction: column; align-items: center; justify-content: center;
+  min-height: 100vh; padding: 20px; text-align: center;
+}
+#ecran-resonance.actif { display: flex; }
+
+#res-canvas {
+  width: 90%; max-width: 700px; height: 180px;
+  background: #0a0e14; border: 2px solid #2a3440; border-radius: 8px;
+  margin-bottom: 20px; box-shadow: 0 0 20px rgba(137, 119, 89, 0.1);
+}
+
+#res-tuner-container {
+  width: 90%; max-width: 700px; position: relative; margin: 20px 0;
+}
+#res-frequency-scale {
+  width: 100%; height: 50px;
+  background: linear-gradient(90deg, #0f1520 0%, #1a2230 50%, #0f1520 100%);
+  border: 2px solid #3a4450; border-radius: 4px; position: relative;
+}
+#res-tuner-knob {
+  position: absolute; top: -10px; width: 40px; height: 70px;
+  background: linear-gradient(180deg, #897759 0%, #5a4d39 100%);
+  border: 3px solid #c9b99a; border-radius: 8px; cursor: ew-resize;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.6); z-index: 5;
+}
+#res-tuner-knob:active { box-shadow: 0 0 20px rgba(201, 185, 154, 0.4); }
+#res-tuner-knob::after {
+  content: ""; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 4px; height: 20px; background: #1a2230; border-radius: 2px;
+}
+
+#res-signal-meter {
+  width: 90%; max-width: 400px; height: 30px;
+  background: #0a0e14; border: 2px solid #2a3440; border-radius: 15px;
+  margin: 20px 0; position: relative; overflow: hidden;
+}
+#res-signal-bar {
+  height: 100%; background: linear-gradient(90deg, #1a4a1a 0%, #2a8a2a 50%, #3aca3a 100%);
+  width: 0%; transition: width 0.2s; box-shadow: 0 0 10px rgba(58, 202, 58, 0.3);
+}
+#res-signal-text {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  font-size: 0.8rem; font-weight: bold; text-shadow: 0 0 5px #000; z-index: 2;
+}
+
+#res-decoder {
+  width: 90%; max-width: 600px; min-height: 80px;
+  background: #0a0e14; border: 2px solid #3a4450; border-radius: 8px;
+  padding: 20px; margin: 20px 0; font-size: 1.3rem; text-align: center;
+  letter-spacing: 4px; color: #3aca3a;
+}
+.decoded-char { display: inline-block; opacity: 0.3; transition: opacity 0.3s; }
+.decoded-char.visible { opacity: 1; animation: flicker 0.5s ease-in-out; }
+@keyframes flicker { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+#res-controls { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-top: 10px; }
+#res-status { margin-top: 20px; font-size: 0.85rem; color: #4a5460; min-height: 1.2em; }
+.scanning { animation: scan 1s ease-in-out infinite; }
+@keyframes scan { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+#res-target-indicator { position: absolute; top: 20px; right: 20px; font-size: 0.8rem; color: #897759; }

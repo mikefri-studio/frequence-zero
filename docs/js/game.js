@@ -282,6 +282,8 @@ $("#btn-rappeler").onclick = () => { montrer("#ecran-rappel"); sonnerie(); rendr
 $("#btn-suite").onclick = () => demarrerNuit(indexNuit + 1);
 $("#btn-rejouer").onclick = () => demarrerNuit(indexNuit);
 $("#btn-titre").onclick = () => { rendreTitre(); montrer("#ecran-titre"); };
+const btnRes = $("#btn-resonance");
+if (btnRes) btnRes.onclick = () => lancerResonance();
 
 rendreTitre();
 /* ---------- ÉPILOGUE : ARTICLE ---------- */

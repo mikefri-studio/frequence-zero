@@ -113,6 +113,35 @@
 <script src="js/nuit2.js"></script>
 <script src="js/nuit3.js"></script>
 <script src="js/nuit4.js"></script>
-<script src="js/game.js"></script>
+<script src="js/resonance.js"></script>
+  <script src="js/game.js"></script>
+
+  <!-- ÉCRAN MODE RÉSONANCE -->
+  <div id="ecran-resonance" class="ecran">
+    <div id="res-target-indicator">Fréquence cible: <span id="res-target-freq">???</span> Hz</div>
+    <canvas id="res-canvas" width="700" height="180"></canvas>
+    
+    <div id="res-tuner-container">
+      <div id="res-frequency-scale"></div>
+      <div id="res-tuner-knob"></div>
+    </div>
+
+    <div id="res-signal-meter">
+      <div id="res-signal-bar"></div>
+      <div id="res-signal-text">SIGNAL: <span id="res-signal-percent">0</span>%</div>
+    </div>
+
+    <div id="res-decoder">
+      <span id="res-decoded-text"><em>En attente de signal...</em></span>
+    </div>
+
+    <div id="res-controls">
+      <button id="res-btn-scan" class="btn">📡 Scanner</button>
+      <button id="res-btn-reset" class="btn">Réinitialiser</button>
+      <button id="res-btn-back" class="btn">← Retour au titre</button>
+    </div>
+    <div id="res-status">Ajustez le tuner pour capturer la fréquence résiduelle...</div>
+  </div>
+
 </body>
 </html>
