@@ -1,6 +1,6 @@
 /* ============ FRÉQUENCE ZÉRO — moteur multi-nuits ============ */
 const $ = (sel) => document.querySelector(sel);
-const NUITS = [NUIT1, NUIT2, NUIT3, NUIT4];
+const NUITS = [NUIT1, NUIT2, NUIT3, NUIT4, NUIT5];
 let nuit = NUITS[0];
 let indexNuit = 0;
 const resolu = {};
